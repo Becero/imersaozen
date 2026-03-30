@@ -304,18 +304,18 @@ p {
   color: rgba(255, 255, 255, 0.86);
 }
 
-.teacher-card .contact-line {
-  margin-top: 0.55rem;
-  font-size: 0.95rem;
+.teacher-teaser {
+  display: grid;
+  gap: 0.75rem;
 }
 
-.teacher-card .contact-line a {
-  color: #d6f4e5;
-  font-weight: 600;
+.teacher-open {
+  justify-self: start;
+  border-color: rgba(255, 255, 255, 0.55);
 }
 
-.teacher-featured {
-  padding-top: 0.8rem;
+.teacher-open:hover {
+  border-color: rgba(255, 255, 255, 0.85);
 }
 
 .teacher-photo {
@@ -343,6 +343,89 @@ p {
   color: rgba(255, 255, 255, 0.92);
   font-weight: 600;
   letter-spacing: 0.02em;
+}
+
+.teacher-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  padding: 1rem;
+  background: rgba(7, 16, 13, 0.7);
+  backdrop-filter: blur(5px);
+  display: grid;
+  place-items: center;
+  z-index: 80;
+}
+
+.teacher-modal-card {
+  width: min(820px, 100%);
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  border-radius: 18px;
+  background: #f8f3e9;
+  color: var(--text-900);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+  padding: 1rem;
+}
+
+.teacher-modal-close {
+  margin-left: auto;
+  display: block;
+  border: 0;
+  background: transparent;
+  color: var(--forest-700);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.teacher-modal-content {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.teacher-modal-image {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.teacher-modal-text {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.teacher-modal-role {
+  font-weight: 700;
+  color: var(--forest-700);
+}
+
+.teacher-modal-contact a {
+  color: var(--forest-700);
+  font-weight: 700;
+}
+
+.teacher-modal-nav {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+}
+
+.modal-nav-btn {
+  border-color: rgba(30, 58, 49, 0.35);
+  color: var(--forest-700);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.modal-nav-btn:hover {
+  background: rgba(219, 231, 221, 0.45);
+}
+
+body.modal-open {
+  overflow: hidden;
 }
 
 .timeline {
@@ -491,6 +574,14 @@ textarea:focus {
     min-height: auto;
     padding-bottom: 3rem;
   }
+
+  .teacher-modal-content {
+    grid-template-columns: 1fr;
+  }
+
+  .teacher-modal-image {
+    height: 250px;
+  }
 }
 
 @media (max-width: 520px) {
@@ -519,6 +610,15 @@ textarea:focus {
 
   .hero-highlights span {
     font-size: 0.78rem;
+  }
+
+  .teacher-modal-nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .teacher-modal-nav .btn {
+    width: 100%;
   }
 }
 

@@ -128,7 +128,7 @@
         <h2>Professoras convidadas</h2>
       </div>
       <div class="teachers">
-        <article class="teacher-card teacher-featured" data-fallback="Foto da professora Dani Magalhaes">
+        <article class="teacher-card teacher-teaser" data-teacher-card data-fallback="Foto da professora Dani Magalhaes">
           <img
             class="teacher-photo"
             src="assets/Dani-Magalhaes.jpg"
@@ -138,12 +138,22 @@
           >
           <h3>Professora Dani Magalh&atilde;es</h3>
           <p>Facilitadora de yoga e meditacao, com foco em alinhamento, respiracao e presenca.</p>
-          <p class="contact-line">
-            Contato da professora Daniela:
-            <a href="https://wa.me/5512992080994" target="_blank" rel="noopener noreferrer">+55 12 99208-0994</a>
-          </p>
+          <button
+            class="btn btn-outline teacher-open"
+            type="button"
+            data-teacher-open
+            data-name="Professora Dani Magalhaes"
+            data-role="Facilitadora de yoga e meditacao"
+            data-bio="Atua com foco em alinhamento, respiracao e presenca, conduzindo praticas para aprofundar o contato com o corpo, a mente e o silencio interior."
+            data-image="assets/Dani-Magalhaes.jpg"
+            data-alt="Professora Dani Magalhaes em postura de yoga"
+            data-contact-label="WhatsApp da professora Daniela: +55 12 99208-0994"
+            data-contact-url="https://wa.me/5512992080994"
+          >
+            Ver perfil completo
+          </button>
         </article>
-        <article class="teacher-card teacher-featured" data-fallback="Foto da professora Analu Matsubara">
+        <article class="teacher-card teacher-teaser" data-teacher-card data-fallback="Foto da professora Analu Matsubara">
           <img
             class="teacher-photo"
             src="assets/Analu-Matsubara.jpg"
@@ -152,13 +162,43 @@
             loading="lazy"
           >
           <h3>Professora Analu Matsubara</h3>
-          <p>
-            Instrutora certificada de Iyengar Yoga em Sao Paulo e idealizadora do Yoga Pe no Chao.
-            Desde 1999, conduz aulas com disciplina, sensibilidade e formacao internacional pelo Ramamani Iyengar Yoga Institute (Pune, India).
-          </p>
+          <p>Instrutora certificada de Iyengar Yoga em Sao Paulo e idealizadora do Yoga Pe no Chao.</p>
+          <button
+            class="btn btn-outline teacher-open"
+            type="button"
+            data-teacher-open
+            data-name="Professora Analu Matsubara"
+            data-role="Instrutora certificada de Iyengar Yoga"
+            data-bio="Instrutora certificada em Sao Paulo e idealizadora do Yoga Pe no Chao. Desde 1999, conduz aulas com disciplina, sensibilidade e formacao internacional pelo Ramamani Iyengar Yoga Institute, em Pune, India."
+            data-image="assets/Analu-Matsubara.jpg"
+            data-alt="Professora Analu Matsubara sorrindo"
+          >
+            Ver perfil completo
+          </button>
         </article>
       </div>
     </section>
+
+    <div class="teacher-modal-backdrop" id="teacher-modal" hidden>
+      <div class="teacher-modal-card" role="dialog" aria-modal="true" aria-labelledby="teacher-modal-name">
+        <button class="teacher-modal-close" type="button" id="teacher-modal-close" aria-label="Fechar modal">Fechar</button>
+        <div class="teacher-modal-content">
+          <img id="teacher-modal-image" class="teacher-modal-image" src="" alt="">
+          <div class="teacher-modal-text">
+            <p class="kicker">Professora</p>
+            <h3 id="teacher-modal-name"></h3>
+            <p id="teacher-modal-role" class="teacher-modal-role"></p>
+            <p id="teacher-modal-bio"></p>
+            <p id="teacher-modal-contact" class="teacher-modal-contact"></p>
+          </div>
+        </div>
+        <div class="teacher-modal-nav">
+          <button class="btn btn-outline modal-nav-btn" type="button" id="teacher-prev">Anterior</button>
+          <p class="small" id="teacher-position" aria-live="polite"></p>
+          <button class="btn btn-outline modal-nav-btn" type="button" id="teacher-next">Proxima</button>
+        </div>
+      </div>
+    </div>
 
     <section class="section reveal" id="programacao">
       <div class="section-title">
@@ -266,14 +306,14 @@
           <a class="btn btn-whatsapp block" href="https://wa.me/5512992080994" target="_blank" rel="noopener noreferrer">
             Falar com a professora Daniela
           </a>
-          <p class="small">WhatsApp: +55 12 99208-0994</p>
+          
           <p class="small"><strong>Pagamento:</strong> Debito, credito em ate 3x e Pix.</p>
           <p class="small"><strong>Pix (CNPJ):</strong> 40.796.990/0001-30</p>
           <p>Ou centralizar inscricoes no Google Forms:</p>
           <a id="google-forms-link" class="btn btn-outline block" href="https://forms.gle/SEU-LINK-AQUI" target="_blank" rel="noopener noreferrer">
             Abrir Google Forms
           </a>
-          <p class="small">Dica: troque <code>https://forms.gle/SEU-LINK-AQUI</code> pelo link real quando criar o formulario.</p>
+         
         </aside>
       </div>
     </section>
