@@ -150,7 +150,7 @@
             data-contact-label="WhatsApp da professora Daniela: +55 12 99208-0994"
             data-contact-url="https://wa.me/5512992080994"
           >
-            Ver perfil completo
+            Ver detalhes
           </button>
         </article>
         <article class="teacher-card teacher-teaser" data-teacher-card data-fallback="Foto da professora Analu Matsubara">
@@ -173,32 +173,28 @@
             data-image="assets/Analu-Matsubara.jpg"
             data-alt="Professora Analu Matsubara sorrindo"
           >
-            Ver perfil completo
+            Ver detalhes
           </button>
+        </article>
+        <article class="card teacher-inline-panel" id="teacher-modal" aria-labelledby="teacher-modal-name">
+          <div class="teacher-modal-content">
+            <img id="teacher-modal-image" class="teacher-modal-image" src="" alt="">
+            <div class="teacher-modal-text">
+              <p class="kicker">Perfil completo</p>
+              <h3 id="teacher-modal-name"></h3>
+              <p id="teacher-modal-role" class="teacher-modal-role"></p>
+              <p id="teacher-modal-bio"></p>
+              <p id="teacher-modal-contact" class="teacher-modal-contact"></p>
+            </div>
+          </div>
+          <div class="teacher-modal-nav">
+            <button class="btn btn-outline modal-nav-btn" type="button" id="teacher-prev">Anterior</button>
+            <p class="small" id="teacher-position" aria-live="polite"></p>
+            <button class="btn btn-outline modal-nav-btn" type="button" id="teacher-next">Proxima</button>
+          </div>
         </article>
       </div>
     </section>
-
-    <div class="teacher-modal-backdrop" id="teacher-modal" hidden>
-      <div class="teacher-modal-card" role="dialog" aria-modal="true" aria-labelledby="teacher-modal-name">
-        <button class="teacher-modal-close" type="button" id="teacher-modal-close" aria-label="Fechar modal">Fechar</button>
-        <div class="teacher-modal-content">
-          <img id="teacher-modal-image" class="teacher-modal-image" src="" alt="">
-          <div class="teacher-modal-text">
-            <p class="kicker">Professora</p>
-            <h3 id="teacher-modal-name"></h3>
-            <p id="teacher-modal-role" class="teacher-modal-role"></p>
-            <p id="teacher-modal-bio"></p>
-            <p id="teacher-modal-contact" class="teacher-modal-contact"></p>
-          </div>
-        </div>
-        <div class="teacher-modal-nav">
-          <button class="btn btn-outline modal-nav-btn" type="button" id="teacher-prev">Anterior</button>
-          <p class="small" id="teacher-position" aria-live="polite"></p>
-          <button class="btn btn-outline modal-nav-btn" type="button" id="teacher-next">Proxima</button>
-        </div>
-      </div>
-    </div>
 
     <section class="section reveal" id="programacao">
       <div class="section-title">
@@ -330,4 +326,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-

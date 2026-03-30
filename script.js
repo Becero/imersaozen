@@ -3,7 +3,6 @@ const statusText = document.getElementById("form-status");
 const teacherPhotos = document.querySelectorAll(".teacher-photo");
 const teacherOpenButtons = Array.from(document.querySelectorAll("[data-teacher-open]"));
 const teacherModal = document.getElementById("teacher-modal");
-const teacherModalClose = document.getElementById("teacher-modal-close");
 const teacherPrev = document.getElementById("teacher-prev");
 const teacherNext = document.getElementById("teacher-next");
 const teacherPosition = document.getElementById("teacher-position");
@@ -55,7 +54,6 @@ teacherPhotos.forEach((photo) => {
 
 if (
   teacherModal &&
-  teacherModalClose &&
   teacherPrev &&
   teacherNext &&
   teacherPosition &&
@@ -102,17 +100,9 @@ if (
     }
   };
 
-  const openTeacherModal = (index) => {
+  const showTeacher = (index) => {
     currentTeacherIndex = index;
     renderTeacher(currentTeacherIndex);
-    teacherModal.hidden = false;
-    document.body.classList.add("modal-open");
-    teacherModalClose.focus();
-  };
-
-  const closeTeacherModal = () => {
-    teacherModal.hidden = true;
-    document.body.classList.remove("modal-open");
   };
 
   const showPreviousTeacher = () => {
@@ -126,35 +116,13 @@ if (
   };
 
   teacherOpenButtons.forEach((button, index) => {
-    button.addEventListener("click", () => openTeacherModal(index));
+    button.addEventListener("click", () => {
+      showTeacher(index);
+      teacherModal.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
   });
 
-  teacherModalClose.addEventListener("click", closeTeacherModal);
   teacherPrev.addEventListener("click", showPreviousTeacher);
   teacherNext.addEventListener("click", showNextTeacher);
-
-  teacherModal.addEventListener("click", (event) => {
-    if (event.target === teacherModal) {
-      closeTeacherModal();
-    }
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (teacherModal.hidden) {
-      return;
-    }
-
-    if (event.key === "Escape") {
-      closeTeacherModal();
-      return;
-    }
-
-    if (event.key === "ArrowLeft") {
-      showPreviousTeacher();
-    }
-
-    if (event.key === "ArrowRight") {
-      showNextTeacher();
-    }
-  });
+  renderTeacher(currentTeacherIndex);
 }

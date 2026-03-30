@@ -345,36 +345,18 @@ p {
   letter-spacing: 0.02em;
 }
 
-.teacher-modal-backdrop {
-  position: fixed;
-  inset: 0;
-  padding: 1rem;
-  background: rgba(7, 16, 13, 0.7);
-  backdrop-filter: blur(5px);
-  display: grid;
-  place-items: center;
-  z-index: 80;
-}
-
-.teacher-modal-card {
-  width: min(820px, 100%);
-  max-height: calc(100vh - 2rem);
-  overflow-y: auto;
-  border-radius: 18px;
+.teacher-inline-panel {
   background: #f8f3e9;
   color: var(--text-900);
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
-  padding: 1rem;
+  border: 1px solid rgba(30, 58, 49, 0.14);
 }
 
-.teacher-modal-close {
-  margin-left: auto;
-  display: block;
-  border: 0;
-  background: transparent;
+.teacher-inline-panel .kicker {
   color: var(--forest-700);
-  font-weight: 700;
-  cursor: pointer;
+}
+
+.teacher-inline-panel p {
+  color: var(--text-700);
 }
 
 .teacher-modal-content {
@@ -422,10 +404,6 @@ p {
 
 .modal-nav-btn:hover {
   background: rgba(219, 231, 221, 0.45);
-}
-
-body.modal-open {
-  overflow: hidden;
 }
 
 .timeline {
