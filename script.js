@@ -1,16 +1,11 @@
 const form = document.getElementById("lead-form");
 const statusText = document.getElementById("form-status");
 const teacherPhotos = document.querySelectorAll(".teacher-photo");
-const teacherOpenButtons = Array.from(document.querySelectorAll("[data-teacher-open]"));
-const teacherModal = document.getElementById("teacher-modal");
+const teacherSlides = Array.from(document.querySelectorAll(".teacher-slide"));
 const teacherPrev = document.getElementById("teacher-prev");
 const teacherNext = document.getElementById("teacher-next");
 const teacherPosition = document.getElementById("teacher-position");
-const teacherModalName = document.getElementById("teacher-modal-name");
-const teacherModalRole = document.getElementById("teacher-modal-role");
-const teacherModalBio = document.getElementById("teacher-modal-bio");
-const teacherModalContact = document.getElementById("teacher-modal-contact");
-const teacherModalImage = document.getElementById("teacher-modal-image");
+const whatsappBaseUrl = "https://wa.me/5512992080994";
 
 if (form && statusText) {
   form.addEventListener("submit", (event) => {
@@ -19,14 +14,28 @@ if (form && statusText) {
     const formData = new FormData(form);
     const nome = (formData.get("nome") || "").toString().trim();
     const email = (formData.get("email") || "").toString().trim();
+    const telefone = (formData.get("telefone") || "").toString().trim();
+    const lote = (formData.get("lote") || "").toString().trim();
+    const mensagem = (formData.get("mensagem") || "").toString().trim();
 
-    if (!nome || !email) {
-      statusText.textContent = "Preencha nome e e-mail para entrar na lista.";
+    if (!nome || !email || !telefone) {
+      statusText.textContent = "Preencha nome, e-mail e WhatsApp para continuar.";
       return;
     }
 
-    statusText.textContent = `Obrigada, ${nome.split(" ")[0]}! Seu interesse foi registrado.`;
-    form.reset();
+    const text = [
+      "Ola, tenho interesse no Yoga Padma Retiro.",
+      `Nome: ${nome}`,
+      `E-mail: ${email}`,
+      `WhatsApp: ${telefone}`,
+      `Interesse principal: ${lote || "Nao informado"}`,
+      mensagem ? `Mensagem: ${mensagem}` : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    statusText.textContent = "Abrindo WhatsApp com sua mensagem pronta.";
+    window.open(`${whatsappBaseUrl}?text=${encodeURIComponent(text)}`, "_blank", "noopener,noreferrer");
   });
 }
 
@@ -52,77 +61,26 @@ teacherPhotos.forEach((photo) => {
   }
 });
 
-if (
-  teacherModal &&
-  teacherPrev &&
-  teacherNext &&
-  teacherPosition &&
-  teacherModalName &&
-  teacherModalRole &&
-  teacherModalBio &&
-  teacherModalContact &&
-  teacherModalImage &&
-  teacherOpenButtons.length > 0
-) {
-  const teachers = teacherOpenButtons.map((button) => ({
-    name: button.dataset.name || "",
-    role: button.dataset.role || "",
-    bio: button.dataset.bio || "",
-    image: button.dataset.image || "",
-    alt: button.dataset.alt || "Foto da professora",
-    contactLabel: button.dataset.contactLabel || "",
-    contactUrl: button.dataset.contactUrl || "",
-  }));
-
+if (teacherSlides.length > 0 && teacherPrev && teacherNext && teacherPosition) {
   let currentTeacherIndex = 0;
 
   const renderTeacher = (index) => {
-    const teacher = teachers[index];
-
-    teacherModalName.textContent = teacher.name;
-    teacherModalRole.textContent = teacher.role;
-    teacherModalBio.textContent = teacher.bio;
-    teacherModalImage.src = teacher.image;
-    teacherModalImage.alt = teacher.alt;
-    teacherPosition.textContent = `${index + 1} de ${teachers.length}`;
-
-    if (teacher.contactLabel && teacher.contactUrl) {
-      const contactLink = document.createElement("a");
-      contactLink.href = teacher.contactUrl;
-      contactLink.target = "_blank";
-      contactLink.rel = "noopener noreferrer";
-      contactLink.textContent = teacher.contactLabel;
-      teacherModalContact.replaceChildren(contactLink);
-      teacherModalContact.style.display = "block";
-    } else {
-      teacherModalContact.replaceChildren();
-      teacherModalContact.style.display = "none";
-    }
-  };
-
-  const showTeacher = (index) => {
-    currentTeacherIndex = index;
-    renderTeacher(currentTeacherIndex);
-  };
-
-  const showPreviousTeacher = () => {
-    currentTeacherIndex = (currentTeacherIndex - 1 + teachers.length) % teachers.length;
-    renderTeacher(currentTeacherIndex);
-  };
-
-  const showNextTeacher = () => {
-    currentTeacherIndex = (currentTeacherIndex + 1) % teachers.length;
-    renderTeacher(currentTeacherIndex);
-  };
-
-  teacherOpenButtons.forEach((button, index) => {
-    button.addEventListener("click", () => {
-      showTeacher(index);
-      teacherModal.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    teacherSlides.forEach((slide, slideIndex) => {
+      slide.classList.toggle("is-active", slideIndex === index);
     });
+
+    teacherPosition.textContent = `${index + 1} de ${teacherSlides.length}`;
+  };
+
+  teacherPrev.addEventListener("click", () => {
+    currentTeacherIndex = (currentTeacherIndex - 1 + teacherSlides.length) % teacherSlides.length;
+    renderTeacher(currentTeacherIndex);
   });
 
-  teacherPrev.addEventListener("click", showPreviousTeacher);
-  teacherNext.addEventListener("click", showNextTeacher);
+  teacherNext.addEventListener("click", () => {
+    currentTeacherIndex = (currentTeacherIndex + 1) % teacherSlides.length;
+    renderTeacher(currentTeacherIndex);
+  });
+
   renderTeacher(currentTeacherIndex);
 }
