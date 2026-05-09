@@ -24,11 +24,11 @@ if (form && statusText) {
     }
 
     const text = [
-      "Ola, tenho interesse no Yoga Padma Retiro.",
+      "Ol\u00e1, tenho interesse no Yoga Padma Retiro.",
       `Nome: ${nome}`,
       `E-mail: ${email}`,
       `WhatsApp: ${telefone}`,
-      `Interesse principal: ${lote || "Nao informado"}`,
+      `Interesse principal: ${lote || "N\u00e3o informado"}`,
       mensagem ? `Mensagem: ${mensagem}` : "",
     ]
       .filter(Boolean)
