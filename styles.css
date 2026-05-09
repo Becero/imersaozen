@@ -144,6 +144,7 @@ a {
   font-size: 0.88rem;
   font-weight: 700;
   letter-spacing: 0.04em;
+  text-decoration: none;
 }
 
 .hero-actions {
@@ -264,6 +265,7 @@ a {
   color: var(--earth-600);
   font-size: 0.92rem;
   font-weight: 700;
+  text-decoration: none;
 }
 
 .kicker {
